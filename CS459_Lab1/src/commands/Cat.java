@@ -8,7 +8,7 @@ import java.io.IOException;
 import os.CliCommand;
 
 public class Cat extends CliCommand{
-
+	public Cat(){}
 	@Override
 	public String execute(String[] args) {
 		String strVar = null;

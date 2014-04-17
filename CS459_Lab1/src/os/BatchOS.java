@@ -30,15 +30,15 @@ public class BatchOS implements CommandListener{
 		}catch(Throwable thrown){
 			if (thrown instanceof ClassNotFoundException){
 				batchOs.writeLine("java.lang.ClassNotFoundException for "+ command);
-				return;
 			}else if(thrown instanceof IOException){
 				batchOs.writeLine("java.io.IOException for "+ command);
 			}else if(thrown instanceof InstantiationException){
 				batchOs.writeLine("java.lang.InstantiationException for "+ command);
+			}else if(thrown instanceof IllegalAccessException){
+				batchOs.writeLine("java.lang.IllegalAccessException for "+ command);
 			}else{
 				batchOs.writeLine("java.Throwable Exception for " + command);
 			}
 		}	
 	}
-
 }

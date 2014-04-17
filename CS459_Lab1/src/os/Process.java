@@ -35,23 +35,20 @@ public class Process
 		this.priority = priority;
 		this.id = id;
 		this.status = 2;
+		className = Class.forName("programs." + getName());
+	}
+	public void validity(){
+		
 	}
 	public String run(PrintWriter out) 
 	       throws InstantiationException, IllegalAccessException
 	{
-		try{
-			className = Class.forName("programs." + getName());
-			classInstance = (Program)className.newInstance();
-			startTime = System.currentTimeMillis();
-			status = 0;
-			classInstance.run(out, args);
-			status = 3;
-			endTime = System.currentTimeMillis();
-		}catch(Throwable thrown)
-		{
-			status = 4;
-			return ("java.ClassNotFoundException for " + getName());
-		}
+		classInstance = (Program)className.newInstance();
+		startTime = System.currentTimeMillis();
+		status = 0;
+		classInstance.run(out, args);
+		status = 3;
+		endTime = System.currentTimeMillis();
 		return getName() +" ran successfully time = "+ (endTime - startTime) + " milliseconds\n";
 	}
 	public void setPriority(int priority)
@@ -99,7 +96,11 @@ public class Process
 	}
 	public String toString()
 	{
-		return getName() + "\t" + getId() + "\t" + getStatus() + 
-	   "\t"+getRunTime()+"\t" + getPriority() + "\t " + Arrays.toString(getArgs(this.args));
+		if(getName().equals("Fibonacci")){
+			return getName() + "\t" + getId() + "\t" + getStatus() + "\t"+getRunTime()+
+				   "\t" + getPriority() + "\t " + Arrays.toString(getArgs(this.args));
+		}else 
+			return getName() + "\t\t" + getId() + "\t" + getStatus() + "\t"+getRunTime()+
+				   "\t" + getPriority() + "\t " + Arrays.toString(getArgs(this.args));
 	}
 }
